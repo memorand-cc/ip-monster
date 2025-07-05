@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>The IP Monster</title>
+		<meta name="description" content="Get your external IP and copy it easily">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/d879e1b60f.js" crossorigin="anonymous"></script>
+		<style type="text/css" media="screen">
+			* {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				box-sizing: border-box;
+				font-family: "Atkinson Hyperlegible Next", sans-serif;
+				font-optical-sizing: auto;
+				font-style: normal;
+				color: #e0e0e0;
+			}
+			html {
+				-webkit-text-size-adjust: 100%;
+			}
+			body {
+				background-color: #171717;
+				text-align: center;
+			}
+			header {
+				font-size: 1.2rem;
+				font-weight: 200;
+				letter-spacing: 1px;
+				margin: 2rem 1rem 4rem 1rem;
+			}
+			#container {
+				display: inline-grid;
+				grid-template: auto auto auto / auto auto auto auto auto auto auto;
+			}
+			#container > span {
+				text-align: center;
+				font-size: 1rem;
+				line-height: 1;
+				width: 100%;
+			}
+			#container > span.fc {
+				grid-column: 1 / span 7;
+				border-bottom: 2px solid #fff;
+				padding: 1rem 0rem 0.7rem 0rem;
+			}
+			#container > span.ip {
+				font-size: 2.5rem;
+				padding: 1rem 0.33rem;
+				line-height: 1;
+				font-weight: bold;
+				color: #fe0;
+			}
+			#container > span.pc {
+				border-top: 2px solid #fff;
+				padding: 0.7rem 0rem 1rem 0rem;
+			}	
+			i {
+				vertical-align: middle;
+				color: #9cf;
+			}
+			a {
+				text-decoration: none;
+				cursor: pointer;
+				padding: 0rem 0.5rem 0.25rem 0.5rem;
+				border-radius: 4px;
+			}
+			a:active {
+				background-color: #666;
+			}
+
+			@media screen and (min-width: 800px) {
+				header {
+					font-size: 1.8rem;
+					margin: 3rem 2rem 6rem 2rem;
+				}
+				#container > span {
+					font-size: 1.33rem;
+				}
+				#container > span.fc {
+					padding: 1rem 1rem 0.7rem 1rem;
+				}
+				#container > span.ip {
+					font-size: 4.5rem;
+					padding: 1rem 0.5rem;
+				}			
+				#container > span.pc {
+					padding: 0.7rem 1rem 1rem 1rem;
+				}				
+			}			
+
+			@media screen and (min-width: 1200px) {
+				header {
+					font-size: 2.5rem;
+					margin: 3rem 2rem 6rem 2rem;
+				}
+				#container > span {
+					font-size: 1.618rem;
+				}
+				#container > span.fc {
+					padding: 1rem 1rem 0.7rem 1rem;
+				}
+				#container > span.ip {
+					font-size: 8rem;
+					padding: 1rem;
+				}			
+				#container > span.pc {
+					padding: 0.7rem 1rem 1rem 1rem;
+				}				
+			}			
+
+		</style>
+	</head>
+	<body>
+
+		<header>This is your external IP address:</header>
+
+		<script type="application/javascript">
+			function getIP(json) {
+				document.title = json.ip;
+			}
+		</script>
+
+		<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>	
+
+		<script type="application/javascript">
+			var segIP = document.title.split(".");
+			function copyIP(what) {
+
+				switch(what) {
+					case 0:
+						navigator.clipboard.writeText(document.title);
+						break;
+					case 1:
+						navigator.clipboard.writeText(segIP[0]);
+						break;
+					case 2:
+						navigator.clipboard.writeText(segIP[1]);
+						break;
+					case 3:
+						navigator.clipboard.writeText(segIP[2]);
+						break;
+					case 4:
+						navigator.clipboard.writeText(segIP[3]);
+						break;
+					default:
+						navigator.clipboard.writeText(document.title);
+				}
+			}
+
+		</script>
+
+		<div id='container'>
+				<span class='fc'><a onclick="copyIP(0);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span>
+				<span class='ip'>
+					<script>
+						document.write(segIP[0]);
+					</script>
+				</span>
+				<span class='ip'>.</span>
+				<span class='ip'>
+					<script>
+						document.write(segIP[1]);
+					</script>
+				</span>
+				<span class='ip'>.</span>
+				<span class='ip'>
+					<script>
+						document.write(segIP[2]);
+					</script>
+				</span>
+				<span class='ip'>.</span>
+				<span class='ip'>
+					<script>
+						document.write(segIP[3]);
+					</script>
+				</span>
+				<span class='pc'><a onclick="copyIP(1);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span><span></span><span class='pc'><a onclick="copyIP(2);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span><span></span><span class='pc'><a onclick="copyIP(3);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span><span></span><span class='pc'><a onclick="copyIP(4);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span>
+		</div>
+
+	</body>
+</html>
