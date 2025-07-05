@@ -21,20 +21,25 @@
 				font-style: normal;
 				color: #e0e0e0;
 			}
+			html, body {
+				height: 100%;
+			}
 			html {
 				-webkit-text-size-adjust: 100%;
 			}
 			body {
 				background-color: #171717;
+				background-image: url('monster.png');
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-position: calc(100% - 1rem) calc(100% - 1.5rem);
 				text-align: center;
-			}
-			header {
-				font-size: 1.2rem;
-				font-weight: 200;
-				letter-spacing: 1px;
-				margin: 2rem 1rem 4rem 1rem;
+				display: grid;
+				grid-template: 1fr / 1fr;
 			}
 			#container {
+				align-self: center;
+				justify-self: center;
 				display: inline-grid;
 				grid-template: auto auto auto / auto auto auto auto auto auto auto;
 			}
@@ -73,12 +78,6 @@
 			a:active {
 				background-color: #666;
 			}
-			footer > img {
-				width: 100px;
-				position: fixed;
-				top: -32px;
-				right: 12px;
-			}
 
 			@media screen and (min-width: 800px) {
 				header {
@@ -98,12 +97,6 @@
 				#container > span.pc {
 					padding: 0.7rem 1rem 1rem 1rem;
 				}
-				footer > img {
-					width: 175px;
-					position: fixed;
-					top: -52px;
-					right: 12px;
-				}
 			}
 
 			@media screen and (min-width: 1200px) {
@@ -119,24 +112,15 @@
 				}
 				#container > span.ip {
 					font-size: 8rem;
-					padding: 1rem;
 				}			
 				#container > span.pc {
 					padding: 0.7rem 1rem 1rem 1rem;
-				}
-				footer > img {
-					width: 250px;
-					position: fixed;
-					top: -72px;
-					right: 24px;
 				}
 			}
 
 		</style>
 	</head>
 	<body>
-
-		<header>This is your external IP address:</header>
 
 		<script type="application/javascript">
 			function getIP(json) {
@@ -149,7 +133,6 @@
 		<script type="application/javascript">
 			var segIP = document.title.split(".");
 			function copyIP(what) {
-
 				switch(what) {
 					case 0:
 						navigator.clipboard.writeText(document.title);
@@ -170,40 +153,35 @@
 						navigator.clipboard.writeText(document.title);
 				}
 			}
-
 		</script>
 
-		<div id='container'>
-				<span class='fc'><a onclick="copyIP(0);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span>
-				<span class='ip'>
+		<div id="container">
+				<span class="fc"><a onclick="copyIP(0);"><i class="fa-regular fa-copy"></i>&nbsp;copy</a></span>
+				<span class="ip">
 					<script>
 						document.write(segIP[0]);
 					</script>
 				</span>
-				<span class='ip'>.</span>
-				<span class='ip'>
+				<span class="ip">.</span>
+				<span class="ip">
 					<script>
 						document.write(segIP[1]);
 					</script>
 				</span>
-				<span class='ip'>.</span>
-				<span class='ip'>
+				<span class="ip">.</span>
+				<span class="ip">
 					<script>
 						document.write(segIP[2]);
 					</script>
 				</span>
-				<span class='ip'>.</span>
-				<span class='ip'>
+				<span class="ip">.</span>
+				<span class="ip">
 					<script>
 						document.write(segIP[3]);
 					</script>
 				</span>
-				<span class='pc'><a onclick="copyIP(1);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span><span></span><span class='pc'><a onclick="copyIP(2);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span><span></span><span class='pc'><a onclick="copyIP(3);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span><span></span><span class='pc'><a onclick="copyIP(4);"><i class='fa-regular fa-copy'></i>&nbsp;copy</a></span>
+				<span class="pc"><a onclick="copyIP(1);"><i class="fa-regular fa-copy"></i>&nbsp;copy</a></span><span></span><span class="pc"><a onclick="copyIP(2);"><i class="fa-regular fa-copy"></i>&nbsp;copy</a></span><span></span><span class="pc"><a onclick="copyIP(3);"><i class="fa-regular fa-copy"></i>&nbsp;copy</a></span><span></span><span class="pc"><a onclick="copyIP(4);"><i class="fa-regular fa-copy"></i>&nbsp;copy</a></span>
 		</div>
-
-		<footer>
-			<img src="monster.png" />
-		</footer>
 
 	</body>
 </html>
